@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from prep_terrain_data import makeTerrainData
 from class_vis import prettyPicture
 
@@ -16,7 +16,7 @@ grade_slow = [features_train[ii][0] for ii in range(0, len(features_train)) if l
 bumpy_slow = [features_train[ii][1] for ii in range(0, len(features_train)) if labels_train[ii]==1]
 
 
-#### initial visualization
+#### initial visualization#
 plt.xlim(0.0, 1.0)
 plt.ylim(0.0, 1.0)
 plt.scatter(bumpy_fast, grade_fast, color = "b", label="fast")
@@ -30,15 +30,26 @@ plt.show()
 
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
+from sklearn.neighbors import KNeighborsClassifier
+kNN_clf = KNeighborsClassifier()
+kNN_clf.fit(features_train, labels_train)
+kNN_pred = kNN_clf.predict(features_test)
+from sklearn.metrics import accuracy_score
+kNN_accuracy = accuracy_score(kNN_pred,labels_test)
 
+print "kNN accuracy: ",kNN_accuracy
 
+from sklearn.ensemble import AdaBoostClassifier
+ada_clf = AdaBoostClassifier()
+ada_clf.fit(features_train, labels_train)
+ada_pred = ada_clf.predict(features_test)
+ada_acc = accuracy_score(ada_pred, labels_test)
 
-
-
-
+print "ada accuracy: ", ada_acc 
 
 
 try:
-    prettyPicture(clf, features_test, labels_test)
+	prettyPicture(kNN_clf, features_test, labels_test)
+	prettyPicture(ada_clf, features_test, labels_test)
 except NameError:
     pass
