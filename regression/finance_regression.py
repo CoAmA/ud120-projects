@@ -28,8 +28,8 @@ target, features = targetFeatureSplit( data )
 ### training-testing split needed in regression, just like classification
 from sklearn.cross_validation import train_test_split
 feature_train, feature_test, target_train, target_test = train_test_split(features, target, test_size=0.5, random_state=42)
-train_color = "b"
-test_color = "b"
+train_color = "blue"
+test_color = "red"
 
 
 
@@ -46,6 +46,8 @@ test_color = "b"
 
 
 ### draw the scatterplot, with color-coded training and testing points
+import matplotlib as masterPlt
+masterPlt.use('Agg')
 import matplotlib.pyplot as plt
 for feature, target in zip(feature_test, target_test):
     plt.scatter( feature, target, color=test_color ) 
@@ -56,7 +58,8 @@ for feature, target in zip(feature_train, target_train):
 plt.scatter(feature_test[0], target_test[0], color=test_color, label="test")
 plt.scatter(feature_test[0], target_test[0], color=train_color, label="train")
 
-
+fig = plt.figure()
+fig.savefig('../temp.png')
 
 
 ### draw the regression line, once it's coded
