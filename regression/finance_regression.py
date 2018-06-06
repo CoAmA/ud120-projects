@@ -67,7 +67,7 @@ try:
 except NameError:
     pass
 reg.fit(feature_test, target_test)
-plt.plot(feature_train, reg.predict(feature_train), color="cyan")
+plt.plot(feature_train, reg.predict(feature_train), color="green")
 plt.xlabel(features_list[1])
 plt.ylabel(features_list[0])
 plt.legend()
