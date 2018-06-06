@@ -39,7 +39,7 @@ test_color = "red"
 ### "r" to differentiate training points from test points.
 from sklearn.linear_model import LinearRegression
 reg = LinearRegression()
-reg.fit(feature_test, target_test)
+reg.fit(feature_train, target_train)
 slope = reg.coef_
 intercept = reg.intercept_
 print intercept
@@ -62,10 +62,12 @@ plt.scatter(feature_test[0], target_test[0], color=train_color, label="train")
 
 ### draw the regression line, once it's coded
 try:
-	plt.plot( feature_train, reg.predict(feature_train), color="green" )
+	plt.plot( feature_test, reg.predict(feature_test), color="pink" )
 	plt.savefig('temp.png')
 except NameError:
     pass
+reg.fit(feature_test, target_test)
+plt.plot(feature_train, reg.predict(feature_train), color="cyan")
 plt.xlabel(features_list[1])
 plt.ylabel(features_list[0])
 plt.legend()
