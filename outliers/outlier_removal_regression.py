@@ -32,15 +32,17 @@ reg = LinearRegression()
 reg.fit(ages_train, net_worths_train)
 print "slope: ",reg.coef_
 print "intercept: ", reg.intercept_
-
+print "score on test data: ", reg.score(ages_test, net_worths_test)
 
 try:
 	plt.plot(ages, reg.predict(ages), color="blue")
-	plt.savefig("plot.png")
 except NameError:
     pass
 plt.scatter(ages, net_worths)
+reg.fit(ages_test, net_worths_test)
+plt.plot(ages_test, reg.predict(ages_test), color="cyan")
 plt.show()
+plt.savefig("plot.png")
 
 
 ### identify and remove the most outlier-y points
