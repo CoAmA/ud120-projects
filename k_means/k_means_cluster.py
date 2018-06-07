@@ -25,14 +25,14 @@ def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature
     ### plot each cluster with a different color--add more colors for
     ### drawing more than five clusters
     colors = ["b", "c", "k", "m", "g"]
-    for iii, pp in enumerate(pred):
-        plt.scatter(features[iii][0], features[iii][1], color = colors[pred[iii]])
+    for ii, pp in enumerate(pred):
+        plt.scatter(features[ii][0], features[ii][1], features[ii][2], color = colors[pred[ii]])
 
     ### if you like, place red stars over points that are POIs (just for funsies)
     if mark_poi:
-        for iii, pp in enumerate(pred):
-            if poi[iii]:
-                plt.scatter(features[iii][0], features[iii][1], color="r", marker="*")
+        for ii, pp in enumerate(pred):
+            if poi[ii]:
+                plt.scatter(features[ii][0], features[ii][1], features[ii][2], color="r", marker="*")
     plt.xlabel(f1_name)
     plt.ylabel(f2_name)
     plt.savefig(name)
@@ -78,6 +78,6 @@ plt.savefig("k_means.png")
 ### rename the "name" parameter when you change the number of features
 ### so that the figure gets saved to a different file
 try:
-    Draw(pred, finance_features, poi, mark_poi=False, name="clusters.pdf", f1_name=feature_1, f2_name=feature_2)
+    Draw(pred, finance_features, poi, mark_poi=False, name="clusters3.pdf", f1_name=feature_1, f2_name=feature_2)
 except NameError:
     print "no predictions object named pred found, no clusters to plot"
