@@ -63,7 +63,7 @@ for point in data:
 	salary.append(point[1])
 	stock_opts.append(point[2])
 
-kmeans.fit_predict(salary,stock_opts)
+pred = kmeans.fit_predict(salary,stock_opts)
 pprint(kmeans.cluster_centers_)
 
 ### in the "clustering with 3 features" part of the mini-project,
