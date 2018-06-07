@@ -9,6 +9,8 @@
 
 import pickle
 import numpy
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import sys
 sys.path.append("../tools/")
@@ -61,6 +63,7 @@ poi, finance_features = targetFeatureSplit( data )
 for f1, f2 in finance_features:
     plt.scatter( f1, f2 )
 plt.show()
+plt.savefig("k_means.png")
 
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
