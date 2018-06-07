@@ -30,9 +30,13 @@ ages_train, ages_test, net_worths_train, net_worths_test = train_test_split(ages
 from sklearn.linear_model import LinearRegression
 reg = LinearRegression()
 reg.fit(ages_train, net_worths_train)
-print "slope: ",reg.coef_
-print "intercept: ", reg.intercept_
-print "score on test data: ", reg.score(ages_test, net_worths_test)
+#print reg.get_params
+#print "slope: ",reg.coef_
+#print "intercept: ", reg.intercept_
+#print "score on test data: ", reg.score(ages_test, net_worths_test)
+#print len(reg.predict(ages_train))
+#print len(net_worths_train)
+#print len(ages_train)
 
 try:
 	plt.plot(ages, reg.predict(ages), color="blue")
@@ -43,17 +47,20 @@ reg.fit(ages_test, net_worths_test)
 plt.plot(ages_test, reg.predict(ages_test), color="cyan")
 plt.show()
 plt.savefig("plot.png")
-
+#print(reg.predict(ages_train))
 
 ### identify and remove the most outlier-y points
 cleaned_data = []
 try:
     predictions = reg.predict(ages_train)
     cleaned_data = outlierCleaner( predictions, ages_train, net_worths_train )
+    
+
 except NameError:
     print "your regression object doesn't exist, or isn't name reg"
     print "can't make predictions to use in identifying outliers"
 
+#print cleaned_data
 
 
 
@@ -75,9 +82,12 @@ if len(cleaned_data) > 0:
         print "   or else your regression object isn't named reg"
         print "   either way, only draw the scatter plot of the cleaned data"
     plt.scatter(ages, net_worths)
+    print reg.coef_
+    print reg.score(ages_test, net_worths_test)
     plt.xlabel("ages")
     plt.ylabel("net worths")
     plt.show()
+    plt.savefig("temp2.png");
 
 
 else:
