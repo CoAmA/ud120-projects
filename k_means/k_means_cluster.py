@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import sys
 sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
-
+from sklearn.cluster import KMeans as km
 
 
 
@@ -54,7 +54,17 @@ poi  = "poi"
 features_list = [poi, feature_1, feature_2]
 data = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data )
+kmeans = km(n_clusters = 2)
+salary = []
+pois = []
+stock_opts = []
+for point in data:
+	pois.append(point[0])
+	salary.append(point[1])
+	stock_opts.append(point[2])
 
+kmeans.fit_predict(salary,stock_opts)
+pprint(kmeans.cluster_centers_)
 
 ### in the "clustering with 3 features" part of the mini-project,
 ### you'll want to change this line to 
