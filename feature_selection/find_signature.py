@@ -35,9 +35,18 @@ features_test  = vectorizer.transform(features_test).toarray()
 features_train = features_train[:150].toarray()
 labels_train   = labels_train[:150]
 
-
-
 ### your code goes here
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score as ac
 
-
+clf = DecisionTreeClassifier()
+clf.fit(features_train, labels_train)
+pred = clf.predict(features_test)
+print ac(labels_test, pred)
+imp = clf.feature_importances_
+for i in range(0,len(imp)):
+	if imp[i]>0.2:
+		print i
+		print imp[i]
+                print vectorizer.get_feature_names()[i]
 
