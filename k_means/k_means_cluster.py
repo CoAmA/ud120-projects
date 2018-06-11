@@ -65,6 +65,7 @@ plt.savefig("k_means.png")
 
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
+### just wanna se if it works
 
 
 
